@@ -1,0 +1,28 @@
+{
+  "name": "sparky",
+  "description": "Sparky is a simple node.js library for communicating with a Spark core. Sparky wraps the four default methods (analogRead, analogWrite, digitalRead, digitalWrite), and has a run method for any custom firmware methods on your SparkCore.",
+  "version": "0.1.1",
+  "homepage": "https://github.com/kevingrandon/sparky",
+  "author": {
+    "name": "Kevin Grandon",
+    "email": "kevingrandon@yahoo.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kevingrandon/sparky.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevingrandon/sparky/issues"
+  },
+  "licenses": [
+    {
+      "type": "MPL"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [],
+  "readmeFilename": "README.md"
+}

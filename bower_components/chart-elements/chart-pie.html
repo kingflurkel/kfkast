@@ -1,0 +1,57 @@
+<!--
+Copyright 2013 The Polymer Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="chart-data-behavior.html">
+<link rel="import" href="chartjs-import.html">
+
+<!--
+ Chartjs Pie Element
+
+ Easy, object oriented client side graphs for designers and developers.
+
+ http://www.chartjs.org
+
+ @class chart-js
+ @origin-url http://www.chartjs.org/
+ @categories Charts and Graphs
+ @license Three-clause BSD
+-->
+
+<dom-module id="chart-pie">
+
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+
+  <template>
+
+    <canvas id="chart" width="{{width}}" height="{{height}}"></canvas>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'chart-pie',
+
+      properties: {
+
+        kind: {
+          type: String,
+          value: 'Pie'
+        }
+
+      },
+
+      behaviors: [ChartDataBehavior]
+
+    });
+  </script>
+
+</dom-module>

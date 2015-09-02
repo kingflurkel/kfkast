@@ -1,0 +1,71 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="kf-relays">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <div class="vertical layout center">
+      <paper-button toggles active="{{relay1}}">Relay 1</paper-button>
+      <paper-button toggles active="{{relay2}}">Relay 2</paper-button>
+      <paper-button toggles active="{{relay3}}">Relay 3</paper-button>
+      <paper-button toggles active="{{relay4}}">Relay 4</paper-button>
+    </div>
+  </template>
+</dom-module>
+<script>
+(function() {
+  Polymer({
+    is: 'kf-relays',
+
+    properties: {
+      foo: {
+        type: String,
+        value: 'bar',
+        notify: true
+      },
+      relay1: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        observer: "_relaychanged"
+      },
+      relay2: {
+        type: Boolean,
+        value: true,
+        notify: true,
+        observer: "_relaychanged"
+      },
+      relay3: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        observer: "_relaychanged"
+      },
+      relay4: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        observer: "_relaychanged"
+      }
+    },
+
+    _relaychanged: function(e, detail, sender){
+      console.log('Relay changed',e, detail, sender);
+    }
+    
+  });
+})();
+</script>

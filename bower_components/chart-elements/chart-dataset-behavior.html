@@ -1,0 +1,24 @@
+<script>
+  ChartDatasetBehavior = {
+
+    properties: {
+
+      data: {
+        type: Object,
+        value: function() {
+          return {};
+        }
+      }
+
+    },
+
+    _computeChart: function(options, ctx, data) {
+      if (!data.datasets) {
+        return;
+      }
+
+      return new Chart(ctx)[this.kind](data, options);
+    }
+
+  };
+</script>
