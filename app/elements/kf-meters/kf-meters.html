@@ -25,7 +25,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        response="{{data}}"></iron-ajax>
 
 <template is="dom-if" if="{{chartready}}">
-    <chart-line id="chart" data="[[linedata"></chart-line>
+    <h1>Light</h1>
+    <chart-line id="chart" data="{{lightdata}}" width="600" height="600"></chart-line>
+    <h1>Temperature</h1>
+    <chart-line id="chart" data="{{tempdata}}" width="600" height="600"></chart-line>
+    <h1>Soil Moisture</h1>
+    <chart-line id="chart" data="{{soilmoisture}}" width="600" height="600"></chart-line>
 </template>
 
   </template>
@@ -52,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: false
       },
 
-      linedata: {
+      lightdata: {
         type: Object,
         value: {
           labels: [],
@@ -66,29 +71,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             pointHighlightStroke: "rgba(220,220,220,1)",
             data: []
           }]
-        },
-        observer: "_linedata"
+        }
+      },
+
+      tempdata: {
+        type: Object,
+        value: {
+          labels: [],
+          datasets: [{
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: []
+          }]
+        }
+      },
+
+      soilmoisture: {
+        type: Object,
+        value: {
+          labels: [],
+          datasets: [{
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: []
+          }]
+        }
       }
+
 
     },
 
     handleResponse: function(e){
       var response = e.detail.response;
-      var linedata = this.linedata;
-      //for (var i = response.length - 1; i >= 0; i--) {
-      for (var i = 10 - 1; i >= 0; i--) {
-        console.log(response[i]);
-        linedata.labels.push(response[i].timestamp);
-        linedata.datasets[0].data.push(Number(response[i].light));
+      var lightdata = this.lightdata;
+      var soilmoisture = this.soilmoisture;
+      var tempdata = this.tempdata;
+      
+      var k = 0;
+
+      console.log(response.length);
+      for (var i = response.length - 1; i >= 0; i--) { 
+      //for (var i = 100 - 1; i >= 0; i--) {
+        if(k==100){
+          console.log(response[i]);
+          lightdata.labels.push(response[i].timestamp);
+          lightdata.datasets[0].data.push(Number(response[i].light));
+
+          tempdata.labels.push(response[i].timestamp);
+          tempdata.datasets[0].data.push(Number(response[i].airtemp));
+
+          soilmoisture.labels.push(response[i].timestamp);
+          soilmoisture.datasets[0].data.push(Number(response[i].soilmoisture));
+          k = 0;
+        }
+        k++;
       };
-      this.linedata = linedata;
-      console.log(this.linedata);
+      this.lightdata = lightdata;
+      this.soilmoisture = soilmoisture;
+      this.tempdata = tempdata;
+      console.log(this.lightdata);
       this.chartready = true;
       //this.$.chart._chartChanged();
     },
 
-    _linedata: function(){
-      console.log(this.linedata);
+    _lightdata: function(){
+      console.log(this.lightdata);
     }
   });
 })();
